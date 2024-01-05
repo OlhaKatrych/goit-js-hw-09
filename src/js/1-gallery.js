@@ -68,15 +68,11 @@ const images = [
 
 const list = document.querySelector('.gallery');
 list.insertAdjacentHTML('beforeend', createMarkup(images));
-list.addEventListener('click', handlerClick);
 
-function handlerClick(e) {
-  e.preventDefault();
-  const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-  });
-}
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 function createMarkup(arr) {
   return arr
