@@ -32,7 +32,12 @@ function handlerSubmit(e) {
     email: e.target.elements.email.value,
     message: e.target.elements.message.value,
   };
-  console.log(elements);
+
+  if (elements.email === '' || elements.message === '') {
+    alert('Please fill out all fields!');
+  } else {
+    console.log(elements);
+  }
   localStorage.removeItem(LS_KEY);
   form.reset();
 }
