@@ -17,11 +17,13 @@ function getDataFromLS() {
 form.addEventListener('input', handlerInput);
 form.addEventListener('submit', handlerSubmit);
 
-function handlerInput() {
+function handlerInput(e) {
+  
   const objInputValue = {
-    email: form.elements.email.value.trim(),
-    message: form.elements.message.value.trim(),
+    email: e.currentTarget.elements.email.value.trim(),
+    message: e.currentTarget.elements.message.value.trim(),
   };
+  console.log(objInputValue)
 
   localStorage.setItem(LS_KEY, JSON.stringify(objInputValue));
 }
@@ -29,15 +31,15 @@ function handlerInput() {
 function handlerSubmit(e) {
   e.preventDefault();
   const elements = {
-    email: e.target.elements.email.value,
-    message: e.target.elements.message.value,
+    email: form.elements.email.value,
+    message: form.elements.message.value,
   };
 
   if (elements.email === '' || elements.message === '') {
     alert('Please fill out all fields!');
   } else {
     console.log(elements);
+    localStorage.removeItem(LS_KEY);
+    form.reset();
   }
-  localStorage.removeItem(LS_KEY);
-  form.reset();
 }
